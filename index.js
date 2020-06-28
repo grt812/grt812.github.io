@@ -1,11 +1,24 @@
 // https://api.github.com/users/grt812/repos
 // Thanks to https://stackoverflow.com/questions/247483/http-get-request-in-javascript for this http get request code
 
-function httpGet(theUrl){
+function httpGetAsync(theUrl, callback){
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false );
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(JSON.parse(xmlHttp.responseText));
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
 }
 
-console.log(httpGet("https://api.github.com/users/grt812/repos"));
+$(function(){
+
+  let repoResult = httpGetAsync("https://api.github.com/users/grt812/repos", function(result){
+    console.log(typeof result);
+    result.forEach(function(e){
+      $("#repo-list").append(`
+        <a class="list" href="${e.html_url}" target="_blank">${e.name}</a>`)
+    });
+  });
+
+});
