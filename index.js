@@ -17,7 +17,10 @@ $(function(){
     console.log(typeof result);
     result.forEach(function(e){
       $("#repo-list").append(`
-        <a class="list" href="${e.html_url}" target="_blank">${e.name}</a>`)
+        <a class="list" href="${e.homepage}" target="_blank"><span>${e.name}</span><button data-href="${e.html_url}"><img src="GitHub-Mark-32px.png" alt="GitHub"></button></a>`);
+    });
+    $("[data-href]").click(function(){
+      window.open($(this).attr("data-href"));
     });
   });
 
