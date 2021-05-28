@@ -25,7 +25,8 @@ $(function(){
         // console.log(e.homepage);
       }
     });
-    $("[data-href]").click(function(){
+    $("[data-href]").click(function(e){
+        e.preventDefault();
       window.open($(this).attr("data-href"));
     });
     for(let i = 0; i < 100; i++){
