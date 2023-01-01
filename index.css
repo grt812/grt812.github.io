@@ -53,7 +53,7 @@ a.list{
   align-items: center;
   border-bottom: 1px solid rgb(200, 200, 200);
   transition: transform 0.25s, border 0.25s, background 0.25s;
-  min-width: 50vw;
+  /* min-width: 50vw; */
 }
 
 a.list:hover{
