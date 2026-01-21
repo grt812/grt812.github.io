@@ -14,10 +14,10 @@ function httpGetAsync(theUrl, callback){
 $(function(){
   let nameArray = ["content"];
   let repoResult = httpGetAsync("https://api.github.com/users/grt812/repos", function(result){
-    console.log(typeof result);
-    result.forEach(function(e){
+    result.sort((a,b ) => {
+        return Date.parse(b.created_at).getTime() - Date.parse(a.created_at).getTime();
+    })forEach(function(e){
       if(e.homepage != null && e.homepage !== ""){
-        console.log("URL: '"+e.homepage+"'");
         $("#repo-list").append(`
         <a class="list" href="${e.homepage}" target="_blank"><span>${e.name}</span><button data-href="${e.html_url}"><img src="GitHub-Mark-32px.png" alt="GitHub"></button></a>`);
         nameArray.push(e.name);
@@ -25,7 +25,6 @@ $(function(){
         $("#repo-list").append(`
         <a class="list" href="${e.html_url}" target="_blank"><span>${e.name}</span><button data-href="${e.html_url}"><img src="GitHub-Mark-32px.png" alt="GitHub"></button></a>`);
         nameArray.push(e.name);
-        // console.log(e.homepage);
       }
     });
     $("[data-href]").click(function(e){
@@ -44,4 +43,5 @@ $(function(){
   });
 
 });
+
 
