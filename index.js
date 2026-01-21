@@ -15,7 +15,7 @@ $(function(){
   let nameArray = ["content"];
   let repoResult = httpGetAsync("https://api.github.com/users/grt812/repos", function(result){
     result.sort((a,b ) => {
-        return Date.parse(b.created_at).getTime() - Date.parse(a.created_at).getTime();
+        return Date.parse(b.created_at) - Date.parse(a.created_at);
     }).forEach(function(e){
       if(e.homepage != null && e.homepage !== ""){
         $("#repo-list").append(`
@@ -43,6 +43,7 @@ $(function(){
   });
 
 });
+
 
 
 
