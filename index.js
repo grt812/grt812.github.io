@@ -22,6 +22,9 @@ $(function(){
         <a class="list" href="${e.homepage}" target="_blank"><span>${e.name}</span><button data-href="${e.html_url}"><img src="GitHub-Mark-32px.png" alt="GitHub"></button></a>`);
         nameArray.push(e.name);
       } else {
+        $("#repo-list").append(`
+        <a class="list" href="${e.html_url}" target="_blank"><span>${e.name}</span><button data-href="${e.html_url}"><img src="GitHub-Mark-32px.png" alt="GitHub"></button></a>`);
+        nameArray.push(e.name);
         // console.log(e.homepage);
       }
     });
@@ -34,18 +37,11 @@ $(function(){
       $("#relative-container").append("<span class=\"content\">"+chosenRepo+"</span>");
     }
     $(".content").each(function(){
-        // $(this).css("top",);
-        // $(this).css("left",Math.random()*($(window).width() - 30));
         let xPos = $(window).width()*Math.random()-$(window).width()/2;
         let yPos = $(window).height()*Math.random()-$(window).height()/2;
         $(this).css("transform", "translate("+xPos+"px,"+yPos+"px) rotate("+Math.random()*360+"deg) scale("+(Math.random()*5)+","+(Math.random()*5)+")");
     });
   });
 
-  // setInterval(function(){
-  //   $(".content").each(function(){
-  //
-  //   });
-  // },50);
-
 });
+
